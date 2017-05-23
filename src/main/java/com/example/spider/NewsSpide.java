@@ -61,22 +61,11 @@ public class NewsSpide {
         JsonArray jsonArray = returnData.getAsJsonArray("result");
         Gson gson = new Gson();
 
-//        // json转为带泛型的list
-//        List<NewBean> retList = gson.fromJson(jsonArray.toString(),
-//                new TypeToken<List<NewBean>>() {
-//                }.getType());
 
         List<NewBean2> retList2 = gson.fromJson(jsonArray.toString(),
                 new TypeToken<List<NewBean2>>() {
                 }.getType());
 
-//        cast2bean(retList2);
-
-
-//        List<NewBean> newBeans = returnData.getAsJsonArray("result");
-
-
-//        System.out.println("retList-->   " + retList.size());
 
         return cast2bean(retList2);
 
@@ -94,10 +83,17 @@ public class NewsSpide {
             NewBean2 newBean2 = retList2.get(i);
             if(newBean2.getDislike_reasons()!=null && !newBean2.getDislike_reasons().isEmpty()){
                 newBean.setDislike_reasons(newBean2.getDislike_reasons().toString());
-
-                newBeans.add(newBean);
             }
+            newBean.setImpid(newBean2.getImpid());
+            newBean.setCtype(newBean2.getCtype());
+            newBean.setDate(newBean2.getDate());
+            newBean.setDtype(newBean2.getDtype());
+            newBean.setMeta(newBean2.getMeta());
+            newBean.setPageid(newBean2.getPageid());
+            newBean.setSummary(newBean2.getSummary());
+            newBean.setTitle(newBean2.getTitle());
 
+            newBeans.add(newBean);
 
         }
 
