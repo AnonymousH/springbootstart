@@ -32,6 +32,9 @@ public class SchedulingConfig {
     @Scheduled(cron = "0/5 * * * * ?") // 每5秒执行一次
     public void scheduler() {
 
+        id++;
+        cstart +=10;
+        cend +=10;
 
         List<NewBean> newBeans = NewsSpide.connectUrl(cstart,cend,id);
 
@@ -39,12 +42,22 @@ public class SchedulingConfig {
 
 
         for (int i = 0; i < newBeans.size(); i++) {
-            saveNewsService.save(newBeans.get(i));
+            try {
+                newBeans.get(i).setDislike_reason();
+                newBeans.get(i).setImage_urlss();
+                newBeans.get(i).setLikes();
+                saveNewsService.save(newBeans.get(i));
+            } catch (Exception e) {
+                e.printStackTrace();
+
+                System.out.println("------------------------ scheduler() for crash -------------------");
+
+            }
         }
 
-        id++;
-        cstart +=10;
-        cend +=10;
+
+
+
 
     }
 

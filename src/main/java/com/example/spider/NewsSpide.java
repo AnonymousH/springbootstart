@@ -1,8 +1,6 @@
 package com.example.spider;
 
 import com.example.bean.NewBean;
-import com.example.service.DemoService;
-import com.example.service.SaveNewsService;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -12,7 +10,6 @@ import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -62,44 +59,15 @@ public class NewsSpide {
         Gson gson = new Gson();
 
 
-        List<NewBean2> retList2 = gson.fromJson(jsonArray.toString(),
-                new TypeToken<List<NewBean2>>() {
+        List<NewBean> retList = gson.fromJson(jsonArray.toString(),
+                new TypeToken<List<NewBean>>() {
                 }.getType());
 
 
-        return cast2bean(retList2);
-
-
-    }
-
-    private static List<NewBean> cast2bean(List<NewBean2> retList2) {
-
-        List<NewBean> newBeans =new ArrayList<>();
-
-        for (int i = 0; i < retList2.size(); i++) {
-            NewBean newBean =new NewBean();
-
-
-            NewBean2 newBean2 = retList2.get(i);
-            if(newBean2.getDislike_reasons()!=null && !newBean2.getDislike_reasons().isEmpty()){
-                newBean.setDislike_reasons(newBean2.getDislike_reasons().toString());
-            }
-            newBean.setImpid(newBean2.getImpid());
-            newBean.setCtype(newBean2.getCtype());
-            newBean.setDate(newBean2.getDate());
-            newBean.setDtype(newBean2.getDtype());
-            newBean.setMeta(newBean2.getMeta());
-            newBean.setPageid(newBean2.getPageid());
-            newBean.setSummary(newBean2.getSummary());
-            newBean.setTitle(newBean2.getTitle());
-
-            newBeans.add(newBean);
-
-        }
-
-        return newBeans;
+        return retList;
 
     }
+
 
 
 }
