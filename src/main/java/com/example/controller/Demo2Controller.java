@@ -1,12 +1,14 @@
 package com.example.controller;
 
-import com.example.bean.Demo;
+import com.example.bean.NewBean;
 import com.example.bean.SqlDemo;
 import com.example.service.DemoService;
+import com.github.pagehelper.PageHelper;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by Administrator on 2017/5/9.
@@ -33,6 +35,18 @@ public class Demo2Controller {
     @RequestMapping("/getById")
     public SqlDemo getById(long id){
         return demoService.getById(id);
+    }
+
+
+    @RequestMapping("/getNews")
+    public List<NewBean> getNews(int pageNum , String name){
+        PageHelper.startPage(pageNum,10);
+        return demoService.getNews(name);
+    }
+
+    @RequestMapping("/getNew")
+    public NewBean getNew(String name){
+        return demoService.getNew(name);
     }
 
 }

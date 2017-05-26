@@ -29,9 +29,9 @@ public class NewsSpide {
 
         try {
 
-            System.out.println("url-->    " + Constant.DATA_URL + appid + Constant.DATA_URL2 + start + Constant.DATA_URL3 + end);
+            System.out.println("url-->    " + Constant.DATA_URL  + Constant.DATA_URL2 + start + Constant.DATA_URL3 + end);
 
-            res = Jsoup.connect(Constant.DATA_URL + appid + Constant.DATA_URL2 + start + Constant.DATA_URL3 + end)
+            res = Jsoup.connect(Constant.DATA_URL + Constant.DATA_URL2 + start + Constant.DATA_URL3 + end)
                     .header("Accept", "*/*")
                     .header("Accept-Encoding", "gzip, deflate, sdch")
                     .header("Accept-Language", "zh-CN,zh;q=0.8")

@@ -88,6 +88,31 @@
             <version>2.3.1</version>
         </dependency>
 
+
+        <!--
+           spring-boot mybatis依赖：
+
+           请不要使用1.0.0版本，因为还不支持拦截器插件，
+            1.1.1 是博主写帖子时候的版本，大家使用最新版本即可
+         -->
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+
+        <!--
+            MyBatis提供了拦截器接口，我们可以实现自己的拦截器，
+            将其作为一个plugin装入到SqlSessionFactory中。
+           Github上有位开发者写了一个分页插件，我觉得使用起来还可以，挺方便的。
+           Github项目地址： https://github.com/pagehelper/Mybatis-PageHelper
+         -->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+            <version>4.1.0</version>
+        </dependency>
+
     </dependencies>
 
     <build>

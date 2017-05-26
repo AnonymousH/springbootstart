@@ -1,5 +1,6 @@
 package com.example;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.MultipartConfigFactory;
@@ -13,6 +14,7 @@ import javax.servlet.MultipartConfigElement;
 @RestController
 @SpringBootApplication
 @ServletComponentScan   //扫描到我们自己编写的servlet和filter
+@MapperScan("com.example.mapper")
 public class SpringbootstartApplication {
 
 	public static void main(String[] args) {
