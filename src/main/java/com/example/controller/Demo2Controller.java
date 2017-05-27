@@ -2,6 +2,7 @@ package com.example.controller;
 
 import com.example.bean.NewBean;
 import com.example.bean.SqlDemo;
+import com.example.bean.User;
 import com.example.service.DemoService;
 import com.github.pagehelper.PageHelper;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,31 +23,43 @@ public class Demo2Controller {
 
     /**
      * 测试保存数据方法.
+     *
      * @return
      */
     @RequestMapping("/save")
-    public String save(){
+    public String save() {
         SqlDemo d = new SqlDemo();
         d.setName("Angel");
         demoService.save(d);//保存数据.
-        return"ok.Demo2Controller.save";
+        return "ok.Demo2Controller.save";
     }
 
     @RequestMapping("/getById")
-    public SqlDemo getById(long id){
-        return demoService.getById(id);
+    public SqlDemo getById(long id) {
+
+//        demoService.test();
+
+        SqlDemo sqlDemo = demoService.getById(id);
+        System.out.println("sqlDemo-->    " + sqlDemo);
+        return sqlDemo;
     }
 
 
     @RequestMapping("/getNews")
-    public List<NewBean> getNews(int pageNum , String name){
-        PageHelper.startPage(pageNum,10);
+    public List<NewBean> getNews(int pageNum, String name) {
+        PageHelper.startPage(pageNum, 10);
         return demoService.getNews(name);
     }
 
     @RequestMapping("/getNew")
-    public NewBean getNew(String name){
+    public NewBean getNew(String name) {
         return demoService.getNew(name);
+    }
+
+
+    @RequestMapping("/test")
+    public User putCache() {
+        return demoService.findUser(1l, "wang", "yunfei");
     }
 
 }
